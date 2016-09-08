@@ -74,7 +74,7 @@ Creates the following structure:
 * `.s2i/bin/`
 	* `assemble` – script responsible for building the application
 	* `run` – script responsible for running the application
-	* `save-artifacts` – script responsible for incremental builds, covered in a future article
+	* `save-artifacts` – script responsible for incremental builds
 	* `usage` – script responsible for printing the usage of the builder image
 
 
