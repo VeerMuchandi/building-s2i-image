@@ -7,9 +7,9 @@ Download latest version from
 https://github.com/openshift/source-to-image/releases/
 
 ```
-wget source-to-image-v1.1.1-724c0dd-linux-386.tar.gz
+wget https://github.com/openshift/source-to-image/releases/download/v1.1.2/source-to-image-v1.1.2-5732fdd-linux-386.tar.gz
 
-tar -xvzf source-to-image-v1.1.1-724c0dd-linux-386.tar.gz
+tar -xvzf source-to-image-v1.1.2-5732fdd-linux-386.tar.gz
 ```
 
 It will have two executables s2i and sti
@@ -85,7 +85,12 @@ Creates the following structure:
 
 Since Lighttpd is just an httpserver, the only thing we need to do is to copy the source files into the directory from which the Lighttpd server will serve. The resultant script would look like this.
 
-By default the s2i build places the application source in /tmp/src directory. This directory is where the source and other assets will be placed for the build process. You can modify this location by setting the io.openshift.s2i.destination label or passing --destination flag, in which case the sources will be placed in the src subdirectory of the directory you specified. The destination in the above command (./) is using working directory set in the `rhscl/s2i-base-rhel7` image
+By default the s2i build places the application source in /tmp/src directory. This directory is where the source and other assets will be placed for the build process. You can modify this location by setting the io.openshift.s2i.destination label or passing --destination flag, in which case the sources will be placed in the src subdirectory of the directory you specified. 
+
+Here is the Dockerfile for the base image [https://github.com/openshift/s2i-base/blob/master/Dockerfile.rhel7]()
+
+The destination in the command below `cp -Rf /tmp/src/. ./` uses the working directory set in the `rhscl/s2i-base-rhel7` image which is `/opt/apt-root/src` ([https://github.com/openshift/s2i-base/blob/master/Dockerfile.rhel7#L25]()).
+
 
 ```
 #!/bin/bash -e
